@@ -1,0 +1,14 @@
+// 写一些混合复用的代码 scss 语法
+@mixin flex($hov:space-between , $col:center) {
+    display: flex;
+    justify-content: $hov;
+    align-items: $col;
+}
+@mixin backGroundImg($height : 0px , $width: 0px , $url:'') {
+    display: inline-block;
+    width: $width;
+    height: $height;
+    background: url($url) ;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
