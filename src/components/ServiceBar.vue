@@ -1,0 +1,54 @@
+<template>
+  <div class="serviceContainer">
+    <div class="container">
+      <ul>
+        <li><span class="icon-setting"></span>预约维修服务</li>
+        <li><span class="icon-7day"></span>7天无理由退货</li>
+        <li><span class="icon-15day"></span>15天免费换货</li>
+        <li><span class="icon-post"></span>满150元包邮</li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style lang="scss" scoped>
+@import "~@/assets/scss/mixin.scss";
+.serviceContainer {
+  padding: 33px 0;
+  color: #666666;
+  font-size: 16px;
+  li {
+    display: inline-block;
+    width: 24.9%;
+    text-align: center;
+    border-right: 1px solid #e5e5e5;
+    span {
+      display: inline-block;
+      margin-right: 8px;
+    }
+  }
+  &:last-child {
+    border-right: none;
+  }
+}
+.icon-setting {
+  margin-bottom: -4px;
+  @include backGroundImg(20px, 20px, "@/assets/imgs/icon-setting.png");
+}
+.icon-7day {
+  margin-bottom: -4px;
+  @include backGroundImg(20px, 20px, "@/assets/imgs/icon-7day.png");
+}
+.icon-15day {
+  margin-bottom: -4px;
+  @include backGroundImg(20px, 20px, "@/assets/imgs/icon-15day.png");
+}
+.icon-post {
+  margin-bottom: -4px;
+  @include backGroundImg(20px, 20px, "@/assets/imgs/icon-post.png");
+}
+</style>

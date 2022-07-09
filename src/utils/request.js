@@ -6,14 +6,13 @@ import {
 
 const ins = axios.create() //  创建一个 axios 实例
 // 设置请求响应拦截
-ins.interceptors.response.use(function (response) {
-    let res = response
-    if (res.status === 0) {
-        return res.data
-    } else if (res.status === 10) {
-        window.location.href = '/#/login'
+ins.interceptors.response.use(function (resp) {
+    if (resp.data.status === 0) {
+        return resp.data.data
+    } else if (resp.data.status === 10) {
+        window.location.href('/#/login')
     } else {
-        this.$message.error(res.msg)
+        alert("发生了错误")
     }
 })
 ins.defaults.baseURL = '/api' // 设置默认请求时间

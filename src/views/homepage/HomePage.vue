@@ -1,9 +1,16 @@
 <template>
-  <div class="homeIndexContainer">这是首页</div>
+  <div class="homeIndexContainer">
+    <ServiceBar></ServiceBar>
+  </div>
 </template>
 
 <script>
-export default {};
+import ServiceBar from "@/components/ServiceBar.vue";
+export default {
+  components: {
+    ServiceBar,
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>

@@ -9,9 +9,11 @@
           <a href="javascript:;">协议规则</a>
         </div>
         <div class="topbar-user">
-          <a href="javascript:;">登录</a>
-          <a href="javascript:;">注册</a>
-          <a href="javascript:;" class="my-cart"
+          <a href="javascript:;" v-if="!username" @click="handleLogin">登录</a>
+          <a href="javascript:;" v-if="username">{{
+            `当前用户:${username}`
+          }}</a>
+          <a href="javascript:;" class="my-cart" @click="handleGoToCart"
             ><span class="icon-cart"></span> 购物车</a
           >
         </div>
@@ -25,12 +27,83 @@
         <div class="header-introduce">
           <div class="product-item">
             <span>小米手机</span>
+            <div class="children">
+              <ul>
+                <li v-for="item in phoneList" :key="item.id" class="product">
+                  <router-link :to="`/#/product/${item.id}`">
+                    <div class="pro-img">
+                      <img :src="item.mainImage" alt="" />
+                    </div>
+                    <div class="pro-name">{{ item.name }}</div>
+                    <div class="pro-price">{{ `${item.price} 元` }}</div>
+                  </router-link>
+                </li>
+              </ul>
+            </div>
           </div>
           <div class="product-item">
             <span>Redmi红米</span>
           </div>
           <div class="product-item">
             <span>电视</span>
+            <div class="children">
+              <ul>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="@/assets/imgs/nav-img/nav-3-1.jpg" alt="" />
+                    </div>
+                    <div class="pro-name">Redmi智能电视 x55</div>
+                    <div class="pro-price">2399元</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="@/assets/imgs/nav-img/nav-3-2.jpg" alt="" />
+                    </div>
+                    <div class="pro-name">Redmi智能电视 x65</div>
+                    <div class="pro-price">3099元</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="@/assets/imgs/nav-img/nav-3-3.png" alt="" />
+                    </div>
+                    <div class="pro-name">小米电视6 65" OLED 65英寸</div>
+                    <div class="pro-price">6699元</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="@/assets/imgs/nav-img/nav-3-4.jpg" alt="" />
+                    </div>
+                    <div class="pro-name">小米电视 大师 77" OLED 77英寸</div>
+                    <div class="pro-price">17999元</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="@/assets/imgs/nav-img/nav-3-5.jpg" alt="" />
+                    </div>
+                    <div class="pro-name">小米透明电视</div>
+                    <div class="pro-price">49999元</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="@/assets/imgs/nav-img/nav-3-6.png" alt="" />
+                    </div>
+                    <div class="pro-name">小米电视 大师 65英寸OLED</div>
+                    <div class="pro-price">8999元</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="header-search">
@@ -45,12 +118,37 @@
 </template>
 
 <script>
-export default {};
+import { getProduct } from "@/api/product";
+import { MessageBox } from "element-ui";
+export default {
+  data() {
+    return {
+      username: "",
+      phoneList: [],
+    };
+  },
+  mounted() {
+    this.fetchData();
+  },
+  methods: {
+    async fetchData() {
+      const res = await getProduct();
+      this.phoneList = res.list.slice(0, 6);
+    },
+    handleLogin() {
+      this.$router.push("/login");
+    },
+    handleGoToCart() {
+      this.$router.push("/cart");
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 @import "~@/assets/scss/mixin.scss";
 .navHeaderContainer {
+  height: 371px;
   .nav-topbar {
     height: 39px;
     line-height: 39px;
@@ -92,6 +190,7 @@ export default {};
         display: inline-block;
         width: 55px;
         height: 55px;
+        border-radius: 30%;
         background-color: #ff6600;
         .logo-area {
           display: inline-block;
@@ -116,20 +215,75 @@ export default {};
       }
       .header-introduce {
         display: flex;
-        position: absolute;
-        left: 264px;
+        width: 420px;
         .product-item {
           font-size: 16px;
           font-weight: bold;
           color: #333333;
           margin-right: 20px;
           line-height: 112px;
-
           span {
             cursor: pointer;
           }
           &:hover {
             color: #ff6600;
+            .children {
+              height: 220px;
+              opacity: 1;
+            }
+          }
+          .children {
+            position: absolute;
+            top: 112px;
+            left: 0;
+            width: 1226px;
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            transition: 0.5s;
+            border-top: 1px solid #e5e5e5;
+            box-shadow: 0px 7px 6px 0px rgba(0, 0, 0, 0.11);
+            .product {
+              float: left;
+              width: 16.6%;
+              height: 220px;
+              font-size: 12px;
+              line-height: 12px;
+              text-align: center;
+              position: relative;
+              a {
+                display: inline-block;
+              }
+              img {
+                width: auto;
+                height: 110px;
+                margin-top: 26px;
+              }
+              .pro-img {
+                height: 137px;
+              }
+              .pro-name {
+                font-weight: bold;
+                margin-top: 19px;
+                margin-bottom: 8px;
+                color: #333333;
+              }
+              .pro-price {
+                color: #ff6600;
+              }
+              &::before {
+                content: " ";
+                position: absolute;
+                top: 28px;
+                right: 0;
+                width: 1px;
+                height: 100px;
+                border-left: 1px solid #d7d7d7;
+              }
+              &:last-child::before {
+                display: none;
+              }
+            }
           }
         }
       }
