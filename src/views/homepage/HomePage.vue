@@ -45,9 +45,53 @@
         <div class="swiper-button-next" slot="button-next"></div>
       </Swiper>
     </div>
-    <div class="ads-box"></div>
-    <div class="banner"></div>
-    <div class="product-box"></div>
+    <div class="ads-box">
+      <router-link
+        :to="`/product/:${item.id}`"
+        v-for="(item, index) in adsList"
+        :key="index"
+      >
+        <img :src="item.img" alt="" />
+      </router-link>
+    </div>
+    <div class="banner">
+      <router-link to="/product/33">
+        <img src="/imgs/banner-1.png" alt="这是首页标语" />
+      </router-link>
+    </div>
+    <div class="product-box">
+      <div class="wrapper">
+        <h2>手机</h2>
+        <div class="warpperContainer">
+          <div class="banner-left">
+            <img src="/imgs/mix-alpha.jpg" alt="" />
+          </div>
+          <div class="list-box">
+            <div
+              class="list"
+              v-for="(arrItem, index) in phoneList"
+              :key="index"
+            >
+              <div
+                class="item"
+                v-for="(arrItemOne, indexOne) in arrItem"
+                :key="indexOne"
+              >
+                <span>新品</span>
+                <div class="item-img">
+                  <img src="/imgs/detail/phone-1.jpg" alt="" />
+                </div>
+                <div class="item-info">
+                  <h3>小米9 6GB+128GB</h3>
+                  <p>骁龙855，索尼48000万超广角微距</p>
+                  <p class="price">2999元</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <ServiceBar></ServiceBar>
   </div>
 </template>
@@ -120,6 +164,31 @@ export default {
         [0, 0, 0, 0],
         [0, 0, 0, 0],
         [0, 0, 0, 0],
+      ],
+      adsList: [
+        // banner 产品标语
+        {
+          id: 33,
+          img: "/imgs/ads/ads-1.png",
+        },
+        {
+          id: 34,
+          img: "/imgs/ads/ads-2.jpg",
+        },
+        {
+          id: 35,
+          img: "/imgs/ads/ads-3.png",
+        },
+        {
+          id: 36,
+          img: "/imgs/ads/ads-4.jpg",
+        },
+      ],
+      phoneList: [
+        [1, 1],
+        [1, 1],
+        [1, 1],
+        [1, 1],
       ],
     };
   },
@@ -223,6 +292,94 @@ export default {
     img {
       width: 100%;
       height: 100%;
+    }
+  }
+}
+.ads-box {
+  width: 1226px;
+  margin: 14px auto;
+  margin-bottom: 31px;
+  display: flex;
+  justify-content: space-between;
+  a {
+    height: 167px;
+    width: 296px;
+    display: inline-block;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &:last-of-type {
+    border: 1px solid #333332;
+  }
+}
+.banner {
+  width: 1226px;
+  height: 130px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+.product-box {
+  width: 100%;
+  height: 740px;
+  background: #f5f5f5;
+  .wrapper {
+    width: 1226px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    h2 {
+      color: #333333;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      padding-top: 30px;
+    }
+    .warpperContainer {
+      display: flex;
+      .banner-left {
+        width: 224px;
+        height: 619px;
+        margin-right: 16px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .list-box {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        .item {
+          width: 236px;
+          height: 302px;
+          background: #ffffff;
+          margin-bottom: 14px;
+          text-align: center;
+          .item-img {
+            height: 195px;
+            width: 190px;
+            margin: 0 auto;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          p {
+            font-size: 12px;
+            color: #999999;
+          }
+          .price {
+            font-size: 14px;
+            margin-top: 13px;
+            color: #f20a0a;
+          }
+        }
+      }
     }
   }
 }
