@@ -79,12 +79,15 @@
               >
                 <span>新品</span>
                 <div class="item-img">
-                  <img src="/imgs/detail/phone-1.jpg" alt="" />
+                  <img :src="arrItemOne.mainImage" alt="" />
                 </div>
                 <div class="item-info">
-                  <h3>小米9 6GB+128GB</h3>
-                  <p>骁龙855，索尼48000万超广角微距</p>
-                  <p class="price">2999元</p>
+                  <h3>{{ arrItemOne.name }}</h3>
+                  <p>{{ arrItemOne.subtitle }}</p>
+                  <div class="priceContainer">
+                    <span class="price">{{ arrItemOne.price }}</span>
+                    <img src="/imgs/icon-cart-hover.png" alt="" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -100,6 +103,7 @@
 import ServiceBar from "@/components/ServiceBar.vue";
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.css";
+import { getProduct } from "@/api/product.js";
 export default {
   data() {
     return {
@@ -184,18 +188,28 @@ export default {
           img: "/imgs/ads/ads-4.jpg",
         },
       ],
-      phoneList: [
-        [1, 1],
-        [1, 1],
-        [1, 1],
-        [1, 1],
-      ],
+      phoneList: [],
     };
   },
   components: {
     ServiceBar,
     Swiper,
     SwiperSlide,
+  },
+  mounted() {
+    this.fetchProuctData();
+  },
+  methods: {
+    async fetchProuctData() {
+      const resp = await getProduct();
+      this.phoneList = [
+        resp.list.slice(0, 2),
+        resp.list.slice(2, 4),
+        resp.list.slice(4, 6),
+        resp.list.slice(6, 8),
+      ];
+      console.log(this.phoneList);
+    },
   },
 };
 </script>
@@ -373,10 +387,18 @@ export default {
             font-size: 12px;
             color: #999999;
           }
-          .price {
-            font-size: 14px;
+          .priceContainer {
             margin-top: 13px;
+            display: flex;
+            justify-content: center;
             color: #f20a0a;
+            font-size: 14px;
+            font-weight: bold;
+            img {
+              width: 22px;
+              height: 18px;
+              margin-left: 5px;
+            }
           }
         }
       }
