@@ -77,7 +77,10 @@
                 v-for="(arrItemOne, indexOne) in arrItem"
                 :key="indexOne"
               >
-                <span>新品</span>
+                <span
+                  :class="arrItemOne.price > 1000 ? 'newProduct' : 'spike'"
+                  >{{ arrItemOne.price > 1000 ? "新品" : "秒杀" }}</span
+                >
                 <div class="item-img">
                   <img :src="arrItemOne.mainImage" alt="" />
                 </div>
@@ -85,7 +88,7 @@
                   <h3>{{ arrItemOne.name }}</h3>
                   <p>{{ arrItemOne.subtitle }}</p>
                   <div class="priceContainer">
-                    <span class="price">{{ arrItemOne.price }}</span>
+                    <span class="price">{{ `${arrItemOne.price} 元` }}</span>
                     <img src="/imgs/icon-cart-hover.png" alt="" />
                   </div>
                 </div>
@@ -201,12 +204,13 @@ export default {
   },
   methods: {
     async fetchProuctData() {
-      const resp = await getProduct();
+      const resp = await getProduct(100012, 2, 18);
+
       this.phoneList = [
-        resp.list.slice(0, 2),
-        resp.list.slice(2, 4),
-        resp.list.slice(4, 6),
         resp.list.slice(6, 8),
+        resp.list.slice(8, 10),
+        resp.list.slice(10, 12),
+        resp.list.slice(12, 14),
       ];
       console.log(this.phoneList);
     },
@@ -374,6 +378,24 @@ export default {
           background: #ffffff;
           margin-bottom: 14px;
           text-align: center;
+          .newProduct {
+            width: 67px;
+            height: 24px;
+            background: #7ecf68;
+            color: #ffffff;
+            font-size: 14px;
+            line-height: 24px;
+            display: inline-block;
+          }
+          .spike {
+            width: 67px;
+            height: 24px;
+            font-size: 14px;
+            line-height: 24px;
+            display: inline-block;
+            background-color: #e82626;
+            color: #ffffff;
+          }
           .item-img {
             height: 195px;
             width: 190px;
