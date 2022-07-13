@@ -1,5 +1,5 @@
 # mishop
-
+企业级电商：小米商城
 ## Project setup
 ```
 npm install
