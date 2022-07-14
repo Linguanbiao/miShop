@@ -89,7 +89,11 @@
                   <p>{{ arrItemOne.subtitle }}</p>
                   <div class="priceContainer">
                     <span class="price">{{ `${arrItemOne.price} 元` }}</span>
-                    <img src="/imgs/icon-cart-hover.png" alt="" />
+                    <img
+                      src="/imgs/icon-cart-hover.png"
+                      @click="addCart()"
+                      style="cursor: pointer"
+                    />
                   </div>
                 </div>
               </div>
@@ -99,6 +103,19 @@
       </div>
     </div>
     <ServiceBar></ServiceBar>
+    <Modal
+      title="提示"
+      sureText="查看购物车"
+      btnType="1"
+      modalType="middle"
+      :showModal="showModal"
+      @submit="handleSubmit()"
+      @cancle="showModal = false"
+    >
+      <template v-slot:body>
+        <p>添加商品成功！</p>
+      </template>
+    </Modal>
   </div>
 </template>
 
@@ -107,9 +124,11 @@ import ServiceBar from "@/components/ServiceBar.vue";
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.css";
 import { getProduct } from "@/api/product.js";
+import Modal from "@/components/modal.vue";
 export default {
   data() {
     return {
+      showModal: false,
       swiperOption: {
         autoplay: true,
         loop: true,
@@ -198,6 +217,7 @@ export default {
     ServiceBar,
     Swiper,
     SwiperSlide,
+    Modal,
   },
   mounted() {
     this.fetchProuctData();
@@ -212,7 +232,12 @@ export default {
         resp.list.slice(10, 12),
         resp.list.slice(12, 14),
       ];
-      console.log(this.phoneList);
+    },
+    addCart() {
+      this.showModal = true;
+    },
+    handleSubmit() {
+      this.$router.push("/cart");
     },
   },
 };
