@@ -1,5 +1,8 @@
 # mishop
 企业级电商：小米商城
+## 项目效果图
+![Image text](https://github.com/Linguanbiao/miShop/blob/master/img/homepage.png)
+> 其余的效果图可见 img 文件夹
 ## Project setup
 ```
 npm install
