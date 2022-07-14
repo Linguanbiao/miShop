@@ -1,0 +1,57 @@
+
+.modal{
+  @include position(fixed);
+   z-index: 100;
+   transition: 0.5s;
+   
+    .mask{
+        @include position(fixed);
+        background-color: #000000 ;
+        opacity: 0.5;
+        z-index: 100
+    }
+    &.slide-enter-active{
+        top: 0;
+    }
+    &.slide-enter{
+        top: -100%
+    }
+    &.slide-leave-active{
+        top: -100%
+    }
+    .dialogContainer{
+        @include position(absolute, 40% , 50% , auto , 660px);
+        background-color: #ffffff;
+        transform: translate(-50%, -50%);
+        z-index: 101;
+        .header{
+           height: 60px;
+           background-color: #F5F5F5;
+           padding: 0 26px;  
+           line-height: 60px;
+           span{
+               font-size: 16px;
+               font-weight: bold;
+               
+           }
+           .icon-close{
+            transition: 0.3s;
+            @include posBackGroundImg(absolute,23px ,25px, 16px ,16px,'@/assets/imgs/icon-close.png');
+            &:hover{
+                transform: scale(1.5);
+            }
+        }   
+        }
+        .body{
+            padding: 42px 40px 54px;
+           font-size: 14px; 
+            }
+     .footer{
+         height: 82px;
+         line-height: 82px;
+         background-color: #F5F5F5;
+         text-align: center;
+     }
+           
+        }
+    }
