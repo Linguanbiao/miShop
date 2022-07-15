@@ -36,6 +36,8 @@
     "sass-loader": "^13.0.2",
     "scss": "^0.2.4",
     "scss-loader": "^0.0.1",
+    "swiper": "^5.4.5",
+    "vue-awesome-swiper": "^4.1.1",
     "vue-cookie": "^1.1.4",
     "vue-template-compiler": "^2.6.14"
   },
@@ -51,7 +53,7 @@
       "parser": "@babel/eslint-parser"
     },
     "rules": {
-      "vue/multi-word-component-names":"off"
+      "vue/multi-word-component-names": "off"
     }
   },
   "browserslist": [
