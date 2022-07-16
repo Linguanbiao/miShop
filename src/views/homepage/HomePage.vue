@@ -51,12 +51,12 @@
         v-for="(item, index) in adsList"
         :key="index"
       >
-        <img :src="item.img" alt="" />
+        <img v-lazy="item.img" alt="" />
       </router-link>
     </div>
     <div class="banner">
       <router-link to="/product/33">
-        <img src="/imgs/banner-1.png" alt="这是首页标语" />
+        <img v-lazy="'/imgs/banner-1.png'" alt="这是首页标语" />
       </router-link>
     </div>
     <div class="product-box">
@@ -64,7 +64,7 @@
         <h2>手机</h2>
         <div class="warpperContainer">
           <div class="banner-left">
-            <img src="/imgs/mix-alpha.jpg" alt="" />
+            <img v-lazy="'/imgs/mix-alpha.jpg'" alt="" />
           </div>
           <div class="list-box">
             <div
@@ -82,7 +82,7 @@
                   >{{ arrItemOne.price > 1000 ? "新品" : "秒杀" }}</span
                 >
                 <div class="item-img">
-                  <img :src="arrItemOne.mainImage" alt="" />
+                  <img v-lazy="arrItemOne.mainImage" alt="" />
                 </div>
                 <div class="item-info">
                   <h3>{{ arrItemOne.name }}</h3>
