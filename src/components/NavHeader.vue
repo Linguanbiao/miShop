@@ -32,7 +32,7 @@
                 <li v-for="item in phoneList" :key="item.id" class="product">
                   <router-link :to="`/#/product/${item.id}`">
                     <div class="pro-img">
-                      <img :src="item.mainImage" alt="" />
+                      <img v-lazy="item.mainImage" />
                     </div>
                     <div class="pro-name">{{ item.name }}</div>
                     <div class="pro-price">{{ `${item.price} 元` }}</div>
@@ -51,7 +51,10 @@
                 <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                      <img src="@/assets/imgs/nav-img/nav-3-1.jpg" alt="" />
+                      <img
+                        v-lazy="'@/assets/imgs/nav-img/nav-3-1.jpg'"
+                        alt=""
+                      />
                     </div>
                     <div class="pro-name">Redmi智能电视 x55</div>
                     <div class="pro-price">2399元</div>
@@ -60,7 +63,10 @@
                 <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                      <img src="@/assets/imgs/nav-img/nav-3-2.jpg" alt="" />
+                      <img
+                        v-lazy="'@/assets/imgs/nav-img/nav-3-2.jpg'"
+                        alt=""
+                      />
                     </div>
                     <div class="pro-name">Redmi智能电视 x65</div>
                     <div class="pro-price">3099元</div>
@@ -69,7 +75,10 @@
                 <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                      <img src="@/assets/imgs/nav-img/nav-3-3.png" alt="" />
+                      <img
+                        v-lazy="'@/assets/imgs/nav-img/nav-3-3.png'"
+                        alt=""
+                      />
                     </div>
                     <div class="pro-name">小米电视6 65" OLED 65英寸</div>
                     <div class="pro-price">6699元</div>
@@ -78,7 +87,10 @@
                 <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                      <img src="@/assets/imgs/nav-img/nav-3-4.jpg" alt="" />
+                      <img
+                        v-lazy="'@/assets/imgs/nav-img/nav-3-4.jpg'"
+                        alt=""
+                      />
                     </div>
                     <div class="pro-name">小米电视 大师 77" OLED 77英寸</div>
                     <div class="pro-price">17999元</div>
@@ -87,7 +99,10 @@
                 <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                      <img src="@/assets/imgs/nav-img/nav-3-5.jpg" alt="" />
+                      <img
+                        v-lazy="'@/assets/imgs/nav-img/nav-3-5.jpg'"
+                        alt=""
+                      />
                     </div>
                     <div class="pro-name">小米透明电视</div>
                     <div class="pro-price">49999元</div>
@@ -96,7 +111,10 @@
                 <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                      <img src="@/assets/imgs/nav-img/nav-3-6.png" alt="" />
+                      <img
+                        v-lazy="'@/assets/imgs/nav-img/nav-3-6.png'"
+                        alt=""
+                      />
                     </div>
                     <div class="pro-name">小米电视 大师 65英寸OLED</div>
                     <div class="pro-price">8999元</div>
@@ -104,6 +122,13 @@
                 </li>
               </ul>
             </div>
+          </div>
+          <div class="product-item">
+            <span>服务中心</span>
+          </div>
+
+          <div class="product-item">
+            <span>社区</span>
           </div>
         </div>
         <div class="header-search">
@@ -148,7 +173,6 @@ export default {
 <style lang="scss" scoped>
 @import "~@/assets/scss/mixin.scss";
 .navHeaderContainer {
-  height: 371px;
   .nav-topbar {
     height: 39px;
     line-height: 39px;
@@ -180,6 +204,7 @@ export default {
     }
   }
   .nav-header {
+    // height: 400px;
     .container {
       height: 112px;
       width: 1226px;
@@ -218,7 +243,7 @@ export default {
         width: 420px;
         .product-item {
           font-size: 16px;
-          font-weight: bold;
+          font-weight: 400;
           color: #333333;
           margin-right: 20px;
           line-height: 112px;
@@ -239,6 +264,8 @@ export default {
             width: 1226px;
             opacity: 0;
             height: 0;
+            background: #ffffff;
+            z-index: 99;
             overflow: hidden;
             transition: 0.5s;
             border-top: 1px solid #e5e5e5;
