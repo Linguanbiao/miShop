@@ -17,9 +17,9 @@
           <span :class="isScanLogin ? 'selected' : ''">扫码登录</span>
         </div>
         <div class="form-body">
-          <input type="text" placeholder="请输入账号" v-model="userName" />
-          <input type="password" placeholder="请输入密码" v-model="pwd" />
-          <button class="btn btn-huge">登录</button>
+          <input type="text" placeholder="请输入账号" v-model="username" />
+          <input type="password" placeholder="请输入密码" v-model="password" />
+          <button class="btn btn-huge" @click="handleLogin">登录</button>
         </div>
         <div class="form-bottom">
           <a href="javascripy:;">手机短信登录/注册</a>
@@ -46,17 +46,28 @@
 </template>
 
 <script>
+import { postLoginInfo } from "@/api/login.js";
 export default {
   data() {
     return {
       isScanLogin: false,
       isUserLogin: true,
-      userName: "",
-      pwd: "",
+      username: "",
+      password: "",
+      userId: "",
     };
   },
-  updated() {
-    console.log(this.userName);
+  methods: {
+    async handleLogin() {
+      let { username, password } = this;
+      postLoginInfo({
+        username,
+        password,
+      }).then((res) => {
+        this.$cookie.set("userId", res.id, { expires: "1M" });
+        this.$message.success("登录成功"), this.$router.push("/");
+      });
+    },
   },
 };
 </script>
