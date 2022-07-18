@@ -22,7 +22,7 @@
           <button class="btn btn-huge" @click="handleLogin">登录</button>
         </div>
         <div class="form-bottom">
-          <a href="javascripy:;">手机短信登录/注册</a>
+          <div class="regiest" @click="handleRegister">手机短信登录/注册</div>
         </div>
       </div>
     </div>
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { postLoginInfo } from "@/api/login.js";
+import { postLoginInfo, register } from "@/api/login.js";
 export default {
   data() {
     return {
@@ -66,6 +66,15 @@ export default {
       }).then((res) => {
         this.$cookie.set("userId", res.id, { expires: "1M" });
         this.$message.success("登录成功"), this.$router.push("/");
+      });
+    },
+    async handleRegister() {
+      let { username, password } = this;
+      register({
+        username,
+        password,
+      }).then(() => {
+        this.$message.success("注册成功,请登录！"), this.$router.push("/login");
       });
     },
   },
@@ -151,11 +160,12 @@ export default {
       }
     }
     .form-bottom {
-      a {
+      .regiest {
         display: inline-block;
         margin-top: 14px;
         color: #ff6600;
         font-size: 14px;
+        cursor: pointer;
       }
     }
   }

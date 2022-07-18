@@ -9,7 +9,9 @@ ins.interceptors.response.use(function (resp) {
     if (resp.data.status === 0) {
         return resp.data.data
     } else if (resp.data.status === 10) {
-        window.location.href('/#/login')
+        if (location.pathname != '/home') {
+            window.location.href = '/#/login'
+        }
     } else {
         Message.error({
             message: resp.data.msg
