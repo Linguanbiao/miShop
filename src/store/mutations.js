@@ -1,6 +1,6 @@
 export default {
     saveUserName(state, payload) {
-        state.useName = payload
+        state.userName = payload
     },
     saveCartCount(state, payload) {
         state.cartCount = payload

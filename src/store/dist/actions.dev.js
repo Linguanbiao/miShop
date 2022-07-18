@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var _default = {
-  savaUserName: function savaUserName(ctx, payload) {
+  saveUserName: function saveUserName(ctx, payload) {
     ctx.commit("saveUserName", payload);
   },
   saveCartCount: function saveCartCount(ctx, payload) {

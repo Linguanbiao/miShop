@@ -9,9 +9,10 @@
           <a href="javascript:;">协议规则</a>
         </div>
         <div class="topbar-user">
-          <a href="javascript:;" @click="handleLogin">{{
-            username ? `当前用户:${username}` : "登录"
+          <a href="javascript:;" v-if="username">{{
+            `当前用户:${username}`
           }}</a>
+          <a href="javascript:;" v-if="!username" @click="handleLogin">登录</a>
 
           <a href="javascript:;" class="my-cart" @click="handleGoToCart"
             ><span class="icon-cart"></span> 购物车 {{ cartCount }}</a
@@ -153,7 +154,7 @@ export default {
   },
   computed: {
     username() {
-      return this.$store.state.username;
+      return this.$store.state.userName;
     },
     cartCount() {
       return this.$store.state.cartCount;
@@ -173,6 +174,9 @@ export default {
     handleGoToCart() {
       this.$router.push("/cart");
     },
+  },
+  updated() {
+    console.log(this.username);
   },
 };
 </script>

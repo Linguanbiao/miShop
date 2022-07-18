@@ -18,7 +18,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 _vue["default"].use(_vuex["default"]);
 
 var state = {
-  useName: '',
+  userName: '',
   // 登录的用户名
   cartCount: 0 // 商品的购物车数量
 

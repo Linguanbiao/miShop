@@ -5,7 +5,7 @@ import actions from "./actions.js"
 
 Vue.use(Vuex);
 const state = {
-  useName: '', // 登录的用户名
+  userName: '', // 登录的用户名
   cartCount: 0 // 商品的购物车数量
 }
 export default new Vuex.Store({

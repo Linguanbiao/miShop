@@ -1,5 +1,5 @@
 export default {
-    savaUserName(ctx, payload) {
+    saveUserName(ctx, payload) {
         ctx.commit("saveUserName", payload)
     },
     saveCartCount(ctx, payload) {
