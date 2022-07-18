@@ -9,12 +9,12 @@
           <a href="javascript:;">协议规则</a>
         </div>
         <div class="topbar-user">
-          <a href="javascript:;" v-if="!username" @click="handleLogin">登录</a>
-          <a href="javascript:;" v-if="username">{{
-            `当前用户:${username}`
+          <a href="javascript:;" @click="handleLogin">{{
+            username ? `当前用户:${username}` : "登录"
           }}</a>
+
           <a href="javascript:;" class="my-cart" @click="handleGoToCart"
-            ><span class="icon-cart"></span> 购物车</a
+            ><span class="icon-cart"></span> 购物车 {{ cartCount }}</a
           >
         </div>
       </div>
@@ -148,9 +148,16 @@ import { MessageBox } from "element-ui";
 export default {
   data() {
     return {
-      username: "",
       phoneList: [],
     };
+  },
+  computed: {
+    username() {
+      return this.$store.state.username;
+    },
+    cartCount() {
+      return this.$store.state.cartCount;
+    },
   },
   mounted() {
     this.fetchData();

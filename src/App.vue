@@ -16,11 +16,12 @@ export default {
   methods: {
     async fetchCartSum() {
       const resp = await getCartSum();
-      console.log(resp);
+      this.$store.dispatch("savaCartCount", resp);
     },
     async fetchUser() {
       const resp = await whoAmI();
       console.log(resp);
+      this.$store.dispatch("savaUserName", resp.username);
     },
   },
 };
