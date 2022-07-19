@@ -1,5 +1,5 @@
 <template>
-  <div class="productNavContainer">
+  <div class="productNavContainer" :class="isFixed ? 'isFixed' : ''">
     <div class="titleContainer">
       <a href="javascript:;">小米8 透明探索版</a>
     </div>
@@ -12,7 +12,28 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      isFixed: false,
+    };
+  },
+  mounted() {
+    window.addEventListener("scroll", this.initHeight);
+  },
+  destroyed() {
+    window.removeEventListener("scroll", this.initHeight);
+  },
+  methods: {
+    initHeight() {
+      let scorllTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+      this.isFixed = scorllTop > 152 ? true : false;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -20,9 +41,19 @@ export default {};
   width: 1226px;
   height: 70px;
   display: flex;
+  padding: 0 50px;
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
+  &.isFixed {
+    background: #ffffff;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 5px #cccccc;
+    transition: 0.3s;
+  }
   .titleContainer {
     a {
       color: #333333;
