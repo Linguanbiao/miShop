@@ -64,7 +64,6 @@ export default {
         username,
         password,
       }).then((res) => {
-        console.log(res);
         this.$cookie.set("userId", res.id, { expires: "1M" });
         this.$store.dispatch("saveUserName", res.username);
         this.$message.success("登录成功"), this.$router.push("/");
