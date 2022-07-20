@@ -22,7 +22,7 @@ export default {
     window.addEventListener("scroll", this.initHeight);
   },
   destroyed() {
-    window.removeEventListener("scroll", this.initHeight);
+    window.removeEventListener("scroll", this.initHeight, false);
   },
   methods: {
     initHeight() {
@@ -41,7 +41,6 @@ export default {
   width: 1226px;
   height: 70px;
   display: flex;
-  padding: 0 50px;
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
@@ -52,7 +51,14 @@ export default {
     top: 0;
     left: 0;
     box-shadow: 0 2px 5px #cccccc;
+    box-sizing: border-box;
     transition: 0.3s;
+    .titleContainer {
+      padding-left: 25px;
+    }
+    .detailsContainer {
+      padding-right: 25px;
+    }
   }
   .titleContainer {
     a {

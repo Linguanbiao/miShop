@@ -5,6 +5,7 @@
         <button class="btn" @click="handleBuy">立即购买</button>
       </template>
     </ProductNav>
+    <p>这是一段测试文字</p>
   </div>
 </template>
 
@@ -28,5 +29,8 @@ export default {
 .productContainer {
   width: 100%;
   border-top: 1px solid #e5e5e5;
+  p {
+    height: 500px;
+  }
 }
 </style>

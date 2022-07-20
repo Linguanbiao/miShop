@@ -10,6 +10,9 @@ ins.interceptors.response.use(function (resp) {
         return resp.data.data
     } else if (resp.data.status === 10) {
         if (location.pathname != '/home') {
+            Message.warn({
+                message: '请登录！'
+            })
             window.location.href = '/#/login'
         }
     } else {
