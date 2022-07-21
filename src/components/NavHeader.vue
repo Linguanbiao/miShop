@@ -175,9 +175,6 @@ export default {
       this.$router.push("/cart");
     },
   },
-  updated() {
-    console.log(this.username);
-  },
 };
 </script>
 
