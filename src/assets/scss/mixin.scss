@@ -4,7 +4,7 @@
     justify-content: $hov;
     align-items: $col;
 }
-@mixin backGroundImg($height : 0px , $width: 0px , $url:'') {
+@mixin backGroundImg($width: 0px, $height : 0px, $url:'') {
     display: inline-block;
     width: $width;
     height: $height;
