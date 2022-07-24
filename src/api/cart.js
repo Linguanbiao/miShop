@@ -3,3 +3,11 @@ import request from "@/utils/request"
 export async function getCartSum() {
     return request.get('/carts/products/sum')
 }
+
+// 添加购物车
+export async function addCart(product) {
+    return request.post('/carts', {
+        ...product
+    })
+
+}

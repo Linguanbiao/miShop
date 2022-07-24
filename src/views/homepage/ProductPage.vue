@@ -111,7 +111,7 @@ export default {
       console.log(this.product);
     },
     handleBuy() {
-      this.$router.push(`/details/${this.curRouterId}`);
+      this.$router.push(`/detail/${this.curRouterId}`);
     },
 
     closeVideo() {

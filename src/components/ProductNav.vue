@@ -4,8 +4,9 @@
       <a href="javascript:;">{{ title }}</a>
     </div>
     <div class="detailsContainer">
-      <a href="">概述</a><span>|</span> <a href="">参数</a><span>|</span>
-      <a href="">用户评价</a>
+      <a href="javascript:;">概述</a><span>|</span>
+      <a href="javascript:;">参数</a><span>|</span>
+      <a href="javascript:;">用户评价</a>
       <slot name="buy"></slot>
     </div>
   </div>
