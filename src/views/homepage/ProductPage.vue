@@ -1,15 +1,15 @@
 <template>
   <div class="productContainer">
-    <ProductNav>
+    <ProductNav :title="product.name">
       <template v-slot:buy>
         <button class="btn" @click="handleBuy">立即购买</button>
       </template>
     </ProductNav>
     <div class="content">
       <div class="item-bg1">
-        <h2>小米 <span>8</span></h2>
+        <h2>{{ product.name }}</h2>
 
-        <h3>8 周 年 旗 舰 版</h3>
+        <h3>{{ product.subtitle }}</h3>
         <p>
           <a href="javascript:;">全球首款双频 GPS</a> <span>|</span>
           <a href="javascript:;">骁龙845</a> <span>|</span>
@@ -17,7 +17,7 @@
           <a href="javascript:;">红外人脸识别</a>
         </p>
         <div class="price">
-          <span>¥2599</span>
+          <span>¥{{ product.price }}</span>
         </div>
       </div>
       <div class="item-bg2"></div>
@@ -71,11 +71,13 @@
 <script>
 import ProductNav from "@/components/ProductNav.vue";
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+import { getProductInfo } from "@/api/product.js";
 import "swiper/css/swiper.css";
 export default {
   data() {
     return {
       showSlide: "",
+      product: {},
       swiperOption: {
         autoplay: true,
         slidesPerView: 3,
@@ -88,14 +90,28 @@ export default {
       },
     };
   },
+  computed: {
+    curRouterId() {
+      return this.$route.params.id;
+    },
+  },
   components: {
     ProductNav,
     Swiper,
     SwiperSlide,
   },
+  mounted() {
+    console.log(this.curRouterId);
+    this.fetchData(this.curRouterId);
+  },
   methods: {
+    async fetchData(id) {
+      const resp = await getProductInfo(id);
+      this.product = resp;
+      console.log(this.product);
+    },
     handleBuy() {
-      console.log("购买成功");
+      this.$router.push(`/details/${this.curRouterId}`);
     },
 
     closeVideo() {

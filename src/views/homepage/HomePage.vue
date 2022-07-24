@@ -47,7 +47,7 @@
     </div>
     <div class="ads-box">
       <router-link
-        :to="`/product/:${item.id}`"
+        :to="`/product/${item.id}`"
         v-for="(item, index) in adsList"
         :key="index"
       >

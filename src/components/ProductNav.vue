@@ -1,7 +1,7 @@
 <template>
   <div class="productNavContainer" :class="isFixed ? 'isFixed' : ''">
     <div class="titleContainer">
-      <a href="javascript:;">小米8 透明探索版</a>
+      <a href="javascript:;">{{ title }}</a>
     </div>
     <div class="detailsContainer">
       <a href="">概述</a><span>|</span> <a href="">参数</a><span>|</span>
@@ -13,6 +13,9 @@
 
 <script>
 export default {
+  props: {
+    title: String,
+  },
   data() {
     return {
       isFixed: false,
