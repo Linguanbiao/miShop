@@ -4,18 +4,18 @@
     <div class="wrapper">
       <div class="container clearfix">
         <div class="swiper">
-          <swiper :options="swiperOption">
+          <swiper :options="swiperOption" class="swiperConfig">
             <swiper-slide
-              ><img src="/imgs/detail/phone-1.jpg" alt=""
+              ><img src="@/assets/imgs/detail/phone-1.jpg" alt=""
             /></swiper-slide>
             <swiper-slide
-              ><img src="/imgs/detail/phone-2.jpg" alt=""
+              ><img src="@/assets/imgs/detail/phone-2.jpg" alt=""
             /></swiper-slide>
             <swiper-slide
-              ><img src="/imgs/detail/phone-3.jpg" alt=""
+              ><img src="@/assets/imgs/detail/phone-3.jpg" alt=""
             /></swiper-slide>
             <swiper-slide
-              ><img src="/imgs/detail/phone-4.jpg" alt=""
+              ><img src="@/assets/imgs/detail/phone-4.jpg" alt=""
             /></swiper-slide>
             <!-- Optional controls -->
             <div class="swiper-pagination" slot="pagination"></div>
@@ -97,6 +97,7 @@ import ProductNav from "@/components/ProductNav";
 import ServiceBar from "@/components/ServiceBar";
 import { getProductInfo } from "@/api/product.js";
 import { addCart } from "@/api/cart.js";
+import "swiper/css/swiper.css";
 export default {
   name: "detail",
   data() {
@@ -107,6 +108,7 @@ export default {
       product: {}, //商品信息
       swiperOption: {
         autoplay: true,
+        freeMode: true,
         pagination: {
           el: ".swiper-pagination",
           clickable: true,
@@ -126,6 +128,8 @@ export default {
   methods: {
     async fetchProductInfo(id) {
       const resp = await getProductInfo(id);
+      this.product = resp;
+      console.log("resp--->", resp);
     },
 
     addCartData() {
@@ -150,8 +154,9 @@ export default {
       height: 617px;
       margin-top: 5px;
       img {
-        width: 100%;
+        z-index: -99;
         height: 100%;
+        width: 100%;
       }
     }
     .content {
@@ -282,5 +287,10 @@ export default {
       margin-bottom: 30px;
     }
   }
+}
+.clearfix {
+  content: " ";
+  clear: both;
+  display: block;
 }
 </style>
