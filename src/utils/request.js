@@ -15,11 +15,12 @@ ins.interceptors.response.use(function (resp) {
             })
             window.location.href = '/#/login'
         }
+        return Promise.reject(resp.data)
     } else {
         Message.error({
             message: resp.data.msg
         })
-        return Promise.reject(resp)
+        return Promise.reject(resp.data)
     }
 })
 ins.defaults.baseURL = '/api' // 设置默认请求时间

@@ -81,9 +81,11 @@
                   :class="arrItemOne.price > 1000 ? 'newProduct' : 'spike'"
                   >{{ arrItemOne.price > 1000 ? "新品" : "秒杀" }}</span
                 >
-                <div class="item-img">
-                  <img v-lazy="arrItemOne.mainImage" alt="" />
-                </div>
+                <router-link :to="`/detail/${arrItem.id}`">
+                  <div class="item-img">
+                    <img v-lazy="arrItemOne.mainImage" alt="" />
+                  </div>
+                </router-link>
                 <div class="item-info">
                   <h3>{{ arrItemOne.name }}</h3>
                   <p>{{ arrItemOne.subtitle }}</p>
@@ -91,7 +93,7 @@
                     <span class="price">{{ `${arrItemOne.price} 元` }}</span>
                     <img
                       src="/imgs/icon-cart-hover.png"
-                      @click="addCart()"
+                      @click="addCartData(arrItemOne)"
                       style="cursor: pointer"
                     />
                   </div>
@@ -125,6 +127,7 @@ import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.css";
 import { getProduct } from "@/api/product.js";
 import Modal from "@/components/modal.vue";
+import { addCart } from "@/api/cart.js";
 export default {
   data() {
     return {
@@ -233,8 +236,14 @@ export default {
         resp.list.slice(12, 14),
       ];
     },
-    addCart() {
+    addCartData(item) {
       this.showModal = true;
+      console.log("item----->", item);
+      // addCart()
+      let productInfo = { productId: item.id, selected: true };
+      addCart(productInfo).then((res = { cartProductVoList: 0 }) => {
+        this.$store.dispatch("saveCartCount", res.cartTotalQuantity);
+      });
     },
     handleSubmit() {
       this.$router.push("/cart");

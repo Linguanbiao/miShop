@@ -1,0 +1,27 @@
+.hearder-logo {
+    display: inline-block;
+    width: 55px;
+    height: 55px;
+    border-radius: 30%;
+    background-color: #ff6600;
+    .logo-area {
+      display: inline-block;
+      width: 110px;
+      height: 55px;
+      &::before {
+        content: " ";
+        @include backGroundImg(55px, 55px, "@/assets/imgs/mi-logo.png");
+        background-size: 55px;
+        transition: 0.3s;
+      }
+      &::after {
+        content: " ";
+        @include backGroundImg(55px, 55px, "@/assets/imgs/mi-home.png");
+        background-size: 55px;
+      }
+      &:hover::before {
+        margin-left: -55px;
+        transition: 0.3s;
+      }
+    }
+  }

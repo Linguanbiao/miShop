@@ -129,12 +129,12 @@ export default {
     async fetchProductInfo(id) {
       const resp = await getProductInfo(id);
       this.product = resp;
-      console.log("resp--->", resp);
     },
 
     addCartData() {
       let productInfo = { productId: this.id, selected: true };
       addCart(productInfo).then((res = { cartProductVoList: 0 }) => {
+        this.$message.success("添加成功");
         this.$store.dispatch("saveCartCount", res.cartTotalQuantity);
         this.$router.push("/cart");
       });
@@ -144,6 +144,7 @@ export default {
 </script>
 <style lang="scss">
 @import "~@/assets/scss/mixin.scss";
+@import "~@/assets/scss/button.scss";
 .detail {
   .wrapper {
     width: 1226px;

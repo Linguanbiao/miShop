@@ -54,6 +54,7 @@ export default {
     width: 100%;
     top: 0;
     left: 0;
+    z-index: 100;
     box-shadow: 0 2px 5px #cccccc;
     box-sizing: border-box;
     transition: 0.3s;

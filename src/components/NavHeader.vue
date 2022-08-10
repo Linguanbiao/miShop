@@ -31,7 +31,7 @@
             <div class="children">
               <ul>
                 <li v-for="item in phoneList" :key="item.id" class="product">
-                  <router-link :to="`/#/product/${item.id}`">
+                  <router-link :to="`/product/${item.id}`">
                     <div class="pro-img">
                       <img v-lazy="item.mainImage" />
                     </div>
