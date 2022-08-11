@@ -7,15 +7,19 @@
       <span>{{ title }}</span>
       <a>{{ description }}</a>
     </div>
-    <div class="username">linwinwin</div>
+    <div class="username">{{ userName }}</div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   props: {
     title: String,
     description: String,
+  },
+  computed: {
+    ...mapState(["userName"]),
   },
 };
 </script>

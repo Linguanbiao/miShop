@@ -101,7 +101,6 @@ export default {
     SwiperSlide,
   },
   mounted() {
-    console.log(this.curRouterId);
     this.fetchData(this.curRouterId);
   },
   methods: {
