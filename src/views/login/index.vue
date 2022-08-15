@@ -131,7 +131,7 @@ export default {
     padding: 40px 30px;
     box-sizing: border-box;
     .form-header {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: bold;
       color: #333333;
       width: 100%;
