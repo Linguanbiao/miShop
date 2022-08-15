@@ -17,3 +17,7 @@ export async function register(registerInfo) {
         ...registerInfo
     })
 }
+
+export async function loginOut() {
+    return request.post('/user/logout')
+}

@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.postLoginInfo = postLoginInfo;
 exports.whoAmI = whoAmI;
 exports.register = register;
+exports.loginOut = loginOut;
 
 var _request = _interopRequireDefault(require("@/utils/request"));
 
@@ -59,6 +60,21 @@ function register(registerInfo) {
         case 1:
         case "end":
           return _context3.stop();
+      }
+    }
+  });
+}
+
+function loginOut() {
+  return regeneratorRuntime.async(function loginOut$(_context4) {
+    while (1) {
+      switch (_context4.prev = _context4.next) {
+        case 0:
+          return _context4.abrupt("return", _request["default"].post('/user/logout'));
+
+        case 1:
+        case "end":
+          return _context4.stop();
       }
     }
   });
