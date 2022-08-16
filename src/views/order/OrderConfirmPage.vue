@@ -140,7 +140,9 @@
             </div>
           </div>
           <div class="btn-group">
-            <a href="/#/cart" class="btn btn-default btn-large">返回购物车</a>
+            <router-link to="/cart" class="btn btn-default btn-large"
+              >返回购物车</router-link
+            >
             <a href="javascript:;" class="btn btn-large" @click="orderSubmit"
               >去结算</a
             >
@@ -148,11 +150,11 @@
         </div>
       </div>
     </div>
-    <modal
+    <Modal
       title="新增确认"
       btnType="1"
       :showModal="showEditModal"
-      @cancel="showEditModal = false"
+      @cancle="showEditModal = false"
       @submit="submitAddress"
     >
       <template v-slot:body>
@@ -207,22 +209,24 @@
           </div>
         </div>
       </template>
-    </modal>
-    <modal
+    </Modal>
+    <Modal
       title="删除确认"
       btnType="1"
       :showModal="showDelModal"
-      @cancel="showDelModal = false"
+      @cancle="showDelModal = false"
       @submit="submitAddress"
     >
       <template v-slot:body>
         <p>您确认要删除此地址吗？</p>
       </template>
-    </modal>
+    </Modal>
   </div>
 </template>
 <script>
-import Modal from "@/components/modal.vue";
+import Modal from "@/components/Modal.vue";
+import { getCartList } from "@/api/cart";
+import { addOrder } from "@/api/order";
 import {
   addAddress,
   deleteAddress,
@@ -250,11 +254,11 @@ export default {
   },
   mounted() {
     this.getAddressList();
-    this.getCartList();
+    this.getCartListData();
   },
   methods: {
     getAddressList() {
-      this.axios.get("/shippings").then((res) => {
+      addressList().then((res) => {
         this.list = res.list;
       });
     },
@@ -264,7 +268,7 @@ export default {
       this.checkedItem = {};
       this.showEditModal = true;
     },
-    // 打开新增地址弹框
+    // 编辑新增地址弹框
     editAddressModal(item) {
       this.userAction = 1;
       this.checkedItem = item;
@@ -278,16 +282,7 @@ export default {
     // 地址删除、编辑、新增功能
     submitAddress() {
       let { checkedItem, userAction } = this;
-      let method,
-        url,
-        params = {};
-      if (userAction == 0) {
-        (method = "post"), (url = "/shippings");
-      } else if (userAction == 1) {
-        (method = "put"), (url = `/shippings/${checkedItem.id}`);
-      } else {
-        (method = "delete"), (url = `/shippings/${checkedItem.id}`);
-      }
+      let params = {};
       if (userAction == 0 || userAction == 1) {
         let {
           receiverName,
@@ -326,11 +321,25 @@ export default {
           receiverZip,
         };
       }
-      this.axios[method](url, params).then(() => {
-        this.closeModal();
-        this.getAddressList();
-        this.$message.success("操作成功");
-      });
+      if (userAction == 0) {
+        addAddress(params).then((res) => {
+          this.closeModal();
+          this.getAddressList();
+          this.$message.success("操作成功");
+        });
+      } else if (userAction == 1) {
+        updateAddress(checkedItem.id, params).then((res) => {
+          this.closeModal();
+          this.getAddressList();
+          this.$message.success("操作成功");
+        });
+      } else {
+        deleteAddress(checkedItem.id).then((res) => {
+          this.closeModal();
+          this.getAddressList();
+          this.$message.success("操作成功");
+        });
+      }
     },
     closeModal() {
       this.checkedItem = {};
@@ -338,8 +347,8 @@ export default {
       this.showDelModal = false;
       this.showEditModal = false;
     },
-    getCartList() {
-      this.axios.get("/carts").then((res) => {
+    getCartListData() {
+      getCartList().then((res) => {
         let list = res.cartProductVoList; //获取购物车中所有商品数据
         this.cartTotalPrice = res.cartTotalPrice; //商品总金额
         this.cartList = list.filter((item) => item.productSelected);
@@ -355,18 +364,14 @@ export default {
         this.$message.error("请选择一个收货地址");
         return;
       }
-      this.axios
-        .post("/orders", {
-          shippingId: item.id,
-        })
-        .then((res) => {
-          this.$router.push({
-            path: "/order/pay",
-            query: {
-              orderNo: res.orderNo,
-            },
-          });
+      addOrder(item.id).then((res) => {
+        this.$router.push({
+          path: "/order/pay",
+          query: {
+            orderNo: res.orderNo,
+          },
         });
+      });
     },
   },
 };
@@ -537,15 +542,13 @@ export default {
     .item {
       margin-bottom: 15px;
       .input {
-        display: inline-block;
+        display: block;
         width: 283px;
         height: 40px;
         line-height: 40px;
         padding-left: 15px;
+        margin-top: 10px;
         border: 1px solid #e5e5e5;
-        & + .input {
-          margin-left: 14px;
-        }
       }
       select {
         height: 40px;

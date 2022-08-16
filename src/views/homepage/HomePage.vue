@@ -126,7 +126,7 @@ import ServiceBar from "@/components/ServiceBar.vue";
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.css";
 import { getProduct } from "@/api/product.js";
-import Modal from "@/components/modal.vue";
+import Modal from "@/components/Modal.vue";
 import { addCart } from "@/api/cart.js";
 export default {
   data() {
