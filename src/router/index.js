@@ -34,17 +34,17 @@ const routes = [{
     redirect: '/list',
     component: OrderView,
     children: [{
-        path: '/list',
+        path: '/order/list',
         name: 'order-list',
         component: () => import('@/views/order/OrderListPage.vue')
       },
       {
-        path: '/confirm',
+        path: '/order/confirm',
         name: 'order-confirm',
         component: () => import('@/views/order/OrderConfirmPage.vue')
       },
       {
-        path: '/pay',
+        path: '/order/pay',
         name: 'order-pay',
         component: () => import('@/views/order/OrderPayPage.vue')
       }
