@@ -542,12 +542,13 @@ export default {
     .item {
       margin-bottom: 15px;
       .input {
-        display: block;
+        display: inline-block;
         width: 283px;
         height: 40px;
         line-height: 40px;
         padding-left: 15px;
-        margin-top: 10px;
+        margin: 0 2px;
+        box-sizing: border-box;
         border: 1px solid #e5e5e5;
       }
       select {
