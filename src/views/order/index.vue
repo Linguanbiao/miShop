@@ -29,6 +29,9 @@ export default {
     } else if (path === "/order/pay") {
       this.title = "订单支付";
       this.description = "请谨防钓鱼链接或诈骗电话，了解更多>>";
+    } else if (path === "/order/alipay") {
+      this.title = "支付宝支付";
+      this.description = "请谨防钓鱼链接或诈骗电话，了解更多>>";
     }
   },
   components: {

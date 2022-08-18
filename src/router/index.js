@@ -47,6 +47,11 @@ const routes = [{
         path: '/order/pay',
         name: 'order-pay',
         component: () => import('@/views/order/OrderPayPage.vue')
+      },
+      {
+        path: '/order/alipay',
+        name: 'ali-pay',
+        component: () => import('@/views/order/AliPayPage.vue')
       }
 
     ]

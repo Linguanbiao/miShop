@@ -82,6 +82,14 @@ var routes = [{
         return _interopRequireWildcard(require('@/views/order/OrderPayPage.vue'));
       });
     }
+  }, {
+    path: '/order/alipay',
+    name: 'ali-pay',
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('@/views/order/AliPayPage.vue'));
+      });
+    }
   }]
 }, {
   path: "/cart",
