@@ -67,33 +67,34 @@
         </div>
       </div>
     </div>
-    <scan-pay-code
+    <ScanPayCode
       v-if="showPay"
       @close="closePayModal"
       :img="payImg"
-    ></scan-pay-code>
-    <modal
+    ></ScanPayCode>
+    <Modal
       title="支付确认"
       btnType="3"
       :showModal="showPayModal"
       sureText="查看订单"
       cancelText="未支付"
-      @cancel="showPayModal = false"
+      @cancle="showPayModal = false"
       @submit="goOrderList"
     >
       <template v-slot:body>
         <p>您确认是否完成支付？</p>
       </template>
       <p></p>
-    </modal>
+    </Modal>
   </div>
 </template>
 <script>
 import QRCode from "qrcode";
 import { Pay } from "@/api/pay";
-// import ScanPayCode from "@/components/ScanPayCode";
+import ScanPayCode from "@/views/order/ScanPayCode";
 import { getOrderDetails } from "@/api/order";
 import Modal from "@/components/Modal";
+
 export default {
   name: "order-pay",
   data() {
@@ -112,8 +113,10 @@ export default {
   },
   components: {
     Modal,
+    ScanPayCode,
   },
-  mounted() {
+
+  Modalmounted() {
     this.getOrderDetail();
   },
   methods: {
