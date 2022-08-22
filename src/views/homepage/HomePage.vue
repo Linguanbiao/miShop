@@ -81,7 +81,7 @@
                   :class="arrItemOne.price > 1000 ? 'newProduct' : 'spike'"
                   >{{ arrItemOne.price > 1000 ? "新品" : "秒杀" }}</span
                 >
-                <router-link :to="`/detail/${arrItem.id}`">
+                <router-link :to="`/detail/${arrItemOne.id}`">
                   <div class="item-img">
                     <img v-lazy="arrItemOne.mainImage" alt="" />
                   </div>
