@@ -128,6 +128,8 @@ import "swiper/css/swiper.css";
 import { getProduct } from "@/api/product.js";
 import Modal from "@/components/Modal.vue";
 import { addCart } from "@/api/cart.js";
+import { onMounted } from "vue";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
@@ -216,6 +218,9 @@ export default {
       phoneList: [],
     };
   },
+  computed: {
+    ...mapState(["userName"]),
+  },
   components: {
     ServiceBar,
     Swiper,
@@ -225,6 +230,7 @@ export default {
   mounted() {
     this.fetchProuctData();
   },
+
   methods: {
     async fetchProuctData() {
       const resp = await getProduct(100012, 2, 18);
@@ -237,13 +243,17 @@ export default {
       ];
     },
     addCartData(item) {
-      this.showModal = true;
-      console.log("item----->", item);
-      // addCart()
-      let productInfo = { productId: item.id, selected: true };
-      addCart(productInfo).then((res = { cartProductVoList: 0 }) => {
-        this.$store.dispatch("saveCartCount", res.cartTotalQuantity);
-      });
+      if (!this.userName) {
+        this.$message.warning("请先登录");
+        this.$router.push("/login");
+      } else {
+        this.showModal = true;
+        // addCart()
+        let productInfo = { productId: item.id, selected: true };
+        addCart(productInfo).then((res = { cartProductVoList: 0 }) => {
+          this.$store.dispatch("saveCartCount", res.cartTotalQuantity);
+        });
+      }
     },
     handleSubmit() {
       this.$router.push("/cart");
