@@ -1,5 +1,9 @@
 <template>
   <div class="order-pay">
+    <order-header
+      title="订单支付"
+      description="请谨防钓鱼链接或诈骗电话，了解更多>>"
+    ></order-header>
     <div class="wrapper">
       <div class="container">
         <div class="order-wrap">
@@ -94,6 +98,7 @@ import { Pay } from "@/api/pay";
 import ScanPayCode from "@/views/order/ScanPayCode";
 import { getOrderDetails } from "@/api/order";
 import Modal from "@/components/Modal";
+import OrderHeader from "@/components/OrderHeader.vue";
 
 export default {
   name: "order-pay",
@@ -114,6 +119,7 @@ export default {
   components: {
     Modal,
     ScanPayCode,
+    OrderHeader,
   },
   mounted() {
     this.getOrderDetail();

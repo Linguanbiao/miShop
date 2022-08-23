@@ -1,5 +1,9 @@
 <template>
   <div class="ali-pay">
+    <order-header
+      title="支付宝支付"
+      description="请谨防钓鱼链接或诈骗电话，了解更多>>"
+    ></order-header>
     <Loading v-if="isLoading"></Loading>
     <div class="form" v-html="content"></div>
   </div>
@@ -8,6 +12,7 @@
 <script>
 import Loading from "@/components/Loading.vue";
 import { Pay } from "@/api/pay";
+import OrderHeader from "@/components/OrderHeader.vue";
 export default {
   name: "alipay",
   data() {
@@ -19,6 +24,7 @@ export default {
   },
   components: {
     Loading,
+    OrderHeader,
   },
   mounted() {
     this.paySubmit();

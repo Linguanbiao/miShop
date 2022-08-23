@@ -1,5 +1,9 @@
 <template>
   <div class="order-confirm">
+    <order-header
+      title="订单确认"
+      description="请认真填写收货地址"
+    ></order-header>
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -227,6 +231,7 @@
 import Modal from "@/components/Modal.vue";
 import { getCartList } from "@/api/cart";
 import { addOrder } from "@/api/order";
+import OrderHeader from "@/components/OrderHeader.vue";
 import {
   addAddress,
   deleteAddress,
@@ -251,6 +256,7 @@ export default {
   },
   components: {
     Modal,
+    OrderHeader,
   },
   mounted() {
     this.getAddressList();
