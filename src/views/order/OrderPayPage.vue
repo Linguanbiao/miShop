@@ -115,8 +115,7 @@ export default {
     Modal,
     ScanPayCode,
   },
-
-  Modalmounted() {
+  mounted() {
     this.getOrderDetail();
   },
   methods: {
