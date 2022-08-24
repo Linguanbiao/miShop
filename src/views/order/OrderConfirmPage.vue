@@ -1,9 +1,11 @@
 <template>
   <div class="order-confirm">
-    <order-header
-      title="订单确认"
-      description="请认真填写收货地址"
-    ></order-header>
+    <div class="header">
+      <order-header
+        title="订单确认"
+        description="请认真填写收货地址"
+      ></order-header>
+    </div>
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -386,10 +388,16 @@ export default {
 @import "~@/assets/scss/button.scss";
 @import "~@/assets/scss/mixin.scss";
 .order-confirm {
+  width: 100%;
+  background: #f5f5f5;
+  .header {
+    width: 100%;
+    height: 112px;
+    background: #ffffff;
+  }
   .wrapper {
     width: 1226px;
     margin: 0 auto;
-    background-color: #f5f5f5;
     padding-top: 30px;
     padding-bottom: 84px;
     .order-box {

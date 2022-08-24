@@ -1,9 +1,11 @@
 <template>
   <div class="orderListContainer">
-    <order-header
-      title="订单列表"
-      description="请谨防钓鱼链接或诈骗电话，了解更多>>"
-    ></order-header>
+    <div class="header">
+      <order-header
+        title="订单列表"
+        description="请谨防钓鱼链接或诈骗电话，了解更多>>"
+      ></order-header>
+    </div>
     <div class="wrapper">
       <div class="container">
         <div class="order-box">
@@ -94,10 +96,17 @@ export default {
 
 <style lang="scss" scoped>
 .orderListContainer {
+  width: 100%;
+  background: #f5f5f5;
+  .header {
+    width: 100%;
+    height: 112px;
+    background: #ffffff;
+  }
   .wrapper {
     width: 1226px;
     margin: 0 auto;
-    background: #f5f5f5;
+
     .order {
       margin: 30px 0;
       border: 1px solid #d7d7d7;

@@ -1,9 +1,11 @@
 <template>
   <div class="order-pay">
-    <order-header
-      title="订单支付"
-      description="请谨防钓鱼链接或诈骗电话，了解更多>>"
-    ></order-header>
+    <div class="head">
+      <order-header
+        title="订单支付"
+        description="请谨防钓鱼链接或诈骗电话，了解更多>>"
+      ></order-header>
+    </div>
     <div class="wrapper">
       <div class="container">
         <div class="order-wrap">
@@ -180,10 +182,16 @@ export default {
 </script>
 <style lang="scss">
 .order-pay {
+  width: 100%;
+  background: #f5f5f5;
+  .head {
+    background: #ffffff;
+    width: 100%;
+    height: 112px;
+  }
   .wrapper {
     width: 1226px;
     margin: 0 auto;
-    background-color: #f5f5f5;
     padding-top: 30px;
     padding-bottom: 61px;
     .order-wrap {
