@@ -78,10 +78,12 @@ export default {
     getOrderList() {
       getOrder().then((res) => {
         this.list = res.list;
+        console.log(this.list);
       });
     },
     goPay(orderNo) {
-      this.$router.push(`/order/pay/${orderNo}`);
+      console.log(orderNo);
+      this.$router.push(`/order/pay?orderNo=${orderNo}`);
     },
   },
   mounted() {
