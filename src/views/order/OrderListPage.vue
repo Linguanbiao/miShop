@@ -29,7 +29,7 @@
               <div class="contentLeft">
                 <div
                   class="contentList"
-                  v-for="(subItem, i) in list.orderItemVoList"
+                  v-for="(subItem, i) in order.orderItemVoList"
                   :key="i"
                 >
                   <div class="content-img">
@@ -44,12 +44,12 @@
                 </div>
               </div>
               <div class="orderRight" v-if="order.status === 20">
-                <a href="javascript:;">{{ order.statusDesc }}</a>
+                <a href="javascript:;"> {{ order.statusDesc }} > </a>
               </div>
               <div class="orderRight" v-else>
-                <a href="javascript:;" @click="goPay(order.orderNo)">{{
-                  order.statusDesc
-                }}</a>
+                <a href="javascript:;" @click="goPay(order.orderNo)"
+                  >{{ order.statusDesc }} >
+                </a>
               </div>
             </div>
           </div>
@@ -67,19 +67,17 @@ export default {
   data() {
     return {
       isLoading: false,
-      lits: [],
+      list: [], // 数据
     };
   },
   components: {
     OrderHeader,
-    Loading,
+    // Loading,
   },
   methods: {
     getOrderList() {
       getOrder().then((res) => {
         this.list = res.list;
-        console.log("res------", res);
-        console.log(this.list);
       });
     },
     goPay(orderNo) {
@@ -94,7 +92,59 @@ export default {
 
 <style lang="scss" scoped>
 .orderListContainer {
-  width: 1226px;
-  margin: 0 auto;
+  .wrapper {
+    width: 1226px;
+    margin: 0 auto;
+    background: #f5f5f5;
+    .order {
+      margin: 30px 0;
+      border: 1px solid #d7d7d7;
+      // padding: 28px 43px;
+      .order-list-header {
+        height: 74px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 16px;
+        color: #666666;
+        background: #fffaf7;
+        padding: 0 43px;
+        span {
+          margin: 0 5px;
+        }
+        .money {
+          font-size: 26px;
+        }
+      }
+      .orderContent {
+        display: flex;
+        justify-content: space-between;
+        background: #ffffff;
+        align-items: center;
+        padding: 30px 43px;
+        .contentList {
+          display: flex;
+          align-items: center;
+          font-size: 20px;
+          color: #333333;
+          .content-img {
+            width: 69px;
+            height: 89px;
+            margin-right: 45px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+        .orderRight {
+          a {
+            font-size: 20px;
+            color: #ff6600;
+          }
+        }
+      }
+    }
+  }
 }
 </style>
