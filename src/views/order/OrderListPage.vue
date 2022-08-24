@@ -115,7 +115,9 @@ export default {
           margin: 0 5px;
         }
         .money {
+          color: #333333;
           font-size: 26px;
+          font-weight: bold;
         }
       }
       .orderContent {
