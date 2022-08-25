@@ -10,6 +10,7 @@
       <div class="container">
         <div class="order-box">
           <loading v-if="isLoading"></loading>
+          <no-data v-if="!isLoading && list.length == 0"></no-data>
           <div class="order" v-for="(order, index) in list" :key="index">
             <div class="order-list-header">
               <div class="headerLeft">
@@ -65,6 +66,7 @@
 import OrderHeader from "@/components/OrderHeader.vue";
 import Loading from "@/components/Loading.vue";
 import { getOrder } from "@/api/order";
+import NoData from "@/views/order/NoData.vue";
 export default {
   data() {
     return {
@@ -75,6 +77,7 @@ export default {
   components: {
     OrderHeader,
     Loading,
+    NoData,
   },
   methods: {
     getOrderList() {

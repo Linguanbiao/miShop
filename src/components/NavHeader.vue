@@ -13,6 +13,9 @@
             `当前用户:${username}`
           }}</a>
           <a href="javascript:;" v-if="!username" @click="handleLogin">登录</a>
+          <a href="javascript:;" v-if="username" @click="handleOrder"
+            >我的订单</a
+          >
           <a href="javascript:;" v-if="username" @click="handleLoginOut"
             >退出</a
           >
@@ -178,6 +181,9 @@ export default {
     },
     handleLogin() {
       this.$router.push("/login");
+    },
+    handleOrder() {
+      this.$router.push("/order/list");
     },
     handleLoginOut() {
       loginOut().then((res) => {
