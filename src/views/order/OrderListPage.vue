@@ -68,19 +68,19 @@ import { getOrder } from "@/api/order";
 export default {
   data() {
     return {
-      isLoading: false,
+      isLoading: true,
       list: [], // 数据
     };
   },
   components: {
     OrderHeader,
-    // Loading,
+    Loading,
   },
   methods: {
     getOrderList() {
       getOrder().then((res) => {
         this.list = res.list;
-        console.log(this.list);
+        this.isLoading = false;
       });
     },
     goPay(orderNo) {
