@@ -7,10 +7,10 @@ export async function addOrder(shippingId) {
 }
 
 // 获取订单列表
-export async function getOrder(pageSize = 10, pageNum = 1) {
+export async function getOrder(pageInfo) {
+    console.log(pageInfo)
     return request.get("/orders", {
-        pageSize,
-        pageNum
+        ...pageInfo
     })
 }
 

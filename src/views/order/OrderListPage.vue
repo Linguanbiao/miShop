@@ -56,6 +56,16 @@
               </div>
             </div>
           </div>
+          <el-pagination
+            background
+            layout="prev, pager, next"
+            class="pagination"
+            :total="total"
+            :current-page="pageNum"
+            :page-size="pageSize"
+            @current-change="handlePageChange"
+          >
+          </el-pagination>
         </div>
       </div>
     </div>
@@ -72,6 +82,9 @@ export default {
     return {
       isLoading: true,
       list: [], // 数据
+      total: 0, //  总共有多少条数据
+      pageSize: 10, // 每页显示多少条数据
+      pageNum: 1, //当前页数
     };
   },
   components: {
@@ -81,14 +94,23 @@ export default {
   },
   methods: {
     getOrderList() {
-      getOrder().then((res) => {
-        this.list = res.list;
-        this.isLoading = false;
-      });
+      console.log(this.pageNum);
+      getOrder({ pageSize: this.pageSize, pageNum: this.pageNum }).then(
+        (res) => {
+          console.log(res);
+          this.list = res.list;
+          this.total = res.total;
+          this.isLoading = false;
+        }
+      );
     },
     goPay(orderNo) {
       console.log(orderNo);
       this.$router.push(`/order/pay?orderNo=${orderNo}`);
+    },
+    handlePageChange(pageNum) {
+      this.pageNum = pageNum;
+      this.getOrderList();
     },
   },
   mounted() {
@@ -101,6 +123,7 @@ export default {
 .orderListContainer {
   width: 100%;
   background: #f5f5f5;
+  padding-bottom: 20px;
   .header {
     width: 100%;
     height: 112px;
@@ -159,6 +182,13 @@ export default {
             color: #ff6600;
           }
         }
+      }
+    }
+    .pagination {
+      text-align: center;
+      .el-pagination.is-background .el-pager li:not(.disabled).active {
+        background-color: #ff6600;
+        color: #fff;
       }
     }
   }
