@@ -18,6 +18,8 @@ var _vant = _interopRequireWildcard(require("vant"));
 
 require("vant/lib/index.css");
 
+require("./assets/scss/element-variables.scss");
+
 var _vueCookie = _interopRequireDefault(require("vue-cookie"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }

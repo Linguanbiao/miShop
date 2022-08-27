@@ -8,6 +8,7 @@ import Vant, {
   Lazyload
 } from 'vant';
 import 'vant/lib/index.css'
+import './assets/scss/element-variables.scss'
 import VueCookie from "vue-cookie"
 
 Vue.config.productionTip = false;
